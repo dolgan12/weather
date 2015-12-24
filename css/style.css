@@ -34,9 +34,7 @@ h1{
   flex-direction: column;
   align-items: center;
 }
-div{
-  border: 1px solid;
-}
+
 .weather{
   display: flex;
   justify-content: space-between;
@@ -51,6 +49,8 @@ div{
 
 }
 .weatherDataItem {
+  border 1px #fff;
+  border-radius: 5px;
   padding:10px;
   margin: 7px;
   background: rgba(255, 255, 255, 0.5);
@@ -67,7 +67,6 @@ div{
 }
 .weatherData {
   margin-top: 20px;
-
   display: flex;
   justify-content: space-around;
 }
