@@ -7,6 +7,8 @@ html, body {
 }
 
 h1{
+  font-size: 38px;
+  font-family: 'Lato', sans-serif;
   text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
@@ -22,7 +24,7 @@ h1{
 }
 
 .container-float {
-  background-image: url("../images/Snow-storm.jpg");
+  /*background-image: url("http://s29.postimg.org/qf2vdd5nr/Snow_storm.jpg");*/
   height: 100vh;
   background-size: cover;
   display: flex;
@@ -45,7 +47,7 @@ h1{
   color: #fefefe;
   text-shadow: rgb(71, 71, 71) 1px 2px 1px;
   align-self: center;
-  font-size: 2.2rem;
+  font-size: 28px;
   font-weight: 700;
 
 }
@@ -73,7 +75,7 @@ h1{
   display: flex;
   justify-content: space-around;
   font-family: 'Lato', sans-serif;
-  font-size: 19px;
+  font-size: 22px;
 }
 #wind {
   margin-left: 10px;

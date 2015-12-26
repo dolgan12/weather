@@ -13,6 +13,7 @@ function getWeather(city, country){
   $.getJSON(url, function(openWeather) {
     weatherObj = openWeather;
     // set the weather image
+    setBackground();
     var weatherImage = 'http://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png';
     $('#weatherImg').attr("src", weatherImage);
 
@@ -24,7 +25,7 @@ function updateHtmlMetric() {
   // Set description field
   $('#description').html(weatherObj.weather[0].description);
   // set the temp
-  $('#temp').html(Math.round(weatherObj.main.temp) + ' &#8451;');
+  $('#temp').html(Math.round(weatherObj.main.temp * 10) / 10 + ' &#8451;');
   // set wind
   $('#wind').html(weatherObj.wind.speed + ' m/s');
   // Set wind direction image
@@ -34,7 +35,6 @@ function updateHtmlMetric() {
 
 function setWindArrow() {
   var deg = weatherObj.wind.deg;
-  console.log(deg);
   var windImage = "./images/west.png";
   if (deg <= 112.5 && deg >= 67.5){
     // west
@@ -62,6 +62,38 @@ function setWindArrow() {
     windImage = "./images/northwest.png";
   }
     $('#windDir').attr("src", windImage);
+}
+
+function setBackground() {
+  var temp = weatherObj.main.temp;
+  var curWeather = weatherObj.weather[0].icon;
+  console.log(curWeather);
+  var bgImg;
+  if (curWeather === "01d" || curWeather === "01n") {
+    bgImg = 'http://s2.postimg.org/m7pnkmdzd/sunny_warm.jpg';
+  }else if (curWeather === "02n" || curWeather ===  "02d") {
+    bgImg = 'http://s30.postimg.org/evflcmh9t/few_clouds_sky1280x720.jpg';
+  }else if (curWeather === "03n" || curWeather ===  "03d"){
+    bgImg = 'http://s22.postimg.org/jo3dfe49t/scattered_clouds.jpg';
+  }else if (curWeather === "04n" || curWeather ===  "04d"){
+    bgImg = 'http://s24.postimg.org/4zenbs04l/broken_clouds.jpg';
+  }else if (curWeather === "09n" || curWeather ===  "09d"){
+    bgImg = 'http://s21.postimg.org/niejvvnjr/montana_shower1.jpg';
+  }else if (curWeather === "10n" || curWeather ===  "10d"){
+    bgImg = 'http://s3.postimg.org/oukza11xv/rain.jpg';
+  }else if (curWeather === "11n" || curWeather ===  "11d"){
+    bgImg = 'http://s18.postimg.org/nmg07586x/Fantastic_Thunderstorm.jpg';
+  }else if (curWeather === "13n" || curWeather ===  "13d"){
+    bgImg = 'http://s8.postimg.org/ecyumf82d/snow.jpg';
+  }else if (curWeather === "50n" || curWeather ===  "50d"){
+    bgImg = 'http://s28.postimg.org/o8ttt328d/Mist.jpg';
+  }else{
+    bgImg = 'http://s29.postimg.org/qf2vdd5nr/Snow_storm.jpg';
+  }
+
+  $('.container-float').css('background-image', 'url(' + bgImg + ')');
+  // http://s2.postimg.org/m7pnkmdzd/sunny_warm.jpg
+
 }
 
 $(document).ready(function(){
