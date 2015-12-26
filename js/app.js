@@ -35,31 +35,31 @@ function updateHtmlMetric() {
 
 function setWindArrow() {
   var deg = weatherObj.wind.deg;
-  var windImage = "./images/west.png";
+  var windImage;
   if (deg <= 112.5 && deg >= 67.5){
     // west
-    windImage = "./images/west.png";
+    windImage = "http://s4.postimg.org/ycs28mzp5/west.png";
   }else if(deg < 67.5 && deg > 22.5){
     //SouthWest
-    windImage = "./images/southwest.png";
+    windImage = "http://s8.postimg.org/ctis9lv9t/southwest.png";
   }else if ((deg <= 22.5 && deg >= 0) || (deg <= 360 && deg >= 337.5)) {
     // south
-    windImage = "./images/south.png";
+    windImage = "http://s24.postimg.org/w7ivsn5i9/south.png";
   }else if (deg < 337.5 && deg > 292.5) {
     // southeast
-    windImage = "./images/southeast.png";
+    windImage = "http://s2.postimg.org/6e61jq1j9/southeast.png";
   }else if (deg <= 292.5 && deg >= 247.5) {
     // east
-    windImage = "./images/east.png";
+    windImage = "http://s4.postimg.org/68khx8v21/east.png";
   }else if (deg < 247.5 && deg > 202.5) {
     //Northeast
-    windImage = "./images/northeast.png";
+    windImage = "http://s4.postimg.org/grpjjj41l/northeast.png";
   }else if (deg <= 202.5 && deg >= 157.5) {
     // north
-    windImage = "./images/north.png";
+    windImage = "http://s30.postimg.org/biam52ar1/north.png";
   }else if (deg < 157.5 && deg > 112.5) {
     // northwest
-    windImage = "./images/northwest.png";
+    windImage = "http://s14.postimg.org/4uecfcs65/northwest.png";
   }
     $('#windDir').attr("src", windImage);
 }
@@ -67,7 +67,6 @@ function setWindArrow() {
 function setBackground() {
   var temp = weatherObj.main.temp;
   var curWeather = weatherObj.weather[0].icon;
-  console.log(curWeather);
   var bgImg;
   if (curWeather === "01d" || curWeather === "01n") {
     bgImg = 'http://s2.postimg.org/m7pnkmdzd/sunny_warm.jpg';
@@ -90,13 +89,33 @@ function setBackground() {
   }else{
     bgImg = 'http://s29.postimg.org/qf2vdd5nr/Snow_storm.jpg';
   }
-
   $('.container-float').css('background-image', 'url(' + bgImg + ')');
-  // http://s2.postimg.org/m7pnkmdzd/sunny_warm.jpg
+}
 
+function updateHtmlImperial() {
+  var temp = weatherObj.main.temp * (9/5) + 32;
+  var speed = Math.round((weatherObj.wind.speed * 2.236936) * 10) / 10 ;
+
+  // set the temp
+  $('#temp').html(Math.round(temp * 10) / 10 + ' &#8457;');
+  // set wind
+  $('#wind').html(speed + ' mph');
 }
 
 $(document).ready(function(){
   // Get location data from ip-adress information.
  getLocation();
+
+$('#selector :checkbox').click(function() {
+  var $this = $(this);
+    // $this will contain a reference to the checkbox
+    if ($this.is(':checked')) {
+        // the checkbox was checked
+        updateHtmlImperial();
+    } else {
+        // the checkbox was unchecked
+        updateHtmlMetric();
+    }
+});
+
 });
